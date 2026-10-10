@@ -29,6 +29,12 @@ export default function Dados({ S, setS }) {
   }
 
   return (
+    <>
+    <div className="card">
+      <h2>Saldo inicial</h2>
+      <p><small>Quanto você tinha em conta antes do primeiro lançamento. Entra no saldo em caixa do Resumo.</small></p>
+      <input type="number" step="0.01" style={{ width: 180 }} value={S.saldo0 || ''} onChange={e => setS(s => ({ ...s, saldo0: parseFloat(e.target.value) || 0 }))} />
+    </div>
     <div className="card">
       <h2>Backup e dados</h2>
       <p><small>Os dados ficam salvos só neste navegador. Faça backup com frequência, principalmente antes de trocar de aparelho.</small></p>
@@ -39,5 +45,6 @@ export default function Dados({ S, setS }) {
         <button className="b" onClick={() => confirm('Apagar TUDO?') && setS(EMPTY)}>Apagar tudo</button>
       </div>
     </div>
+    </>
   )
 }

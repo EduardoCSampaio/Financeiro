@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 const KEY = 'meu-financeiro-v1'
-export const EMPTY = { tx: [], rec: [], bud: {}, goals: [] }
+export const EMPTY = { tx: [], rec: [], bud: {}, goals: [], saldo0: 0 }
 
 export function useStore() {
   const [S, setS] = useState(() => {

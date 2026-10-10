@@ -1,12 +1,12 @@
-import { brl, fd, iso, sum, getRange } from '../utils'
+import { brl, fd, iso, sum } from '../utils'
 
-export default function Resumo({ S, per, refDate, list }) {
+export default function Resumo({ S, per, range, list }) {
   const I = list.filter(t => t.type === 'in')
   const O = list.filter(t => t.type === 'out')
   const ein = sum(I), eout = sum(O), pend = sum(O.filter(t => !t.paid))
-  const caixa = sum(S.tx.filter(t => t.type === 'in' && t.paid)) - sum(S.tx.filter(t => t.type === 'out' && t.paid))
+  const caixa = (S.saldo0 || 0) + sum(S.tx.filter(t => t.type === 'in' && t.paid)) - sum(S.tx.filter(t => t.type === 'out' && t.paid))
 
-  const [a, b] = getRange(per, refDate)
+  const [a, b] = range
   const days = []
   for (let d = new Date(a + 'T12:00'); iso(d) <= b; d.setDate(d.getDate() + 1)) days.push(iso(d))
   const vals = days.map(d => [sum(I.filter(t => t.date === d)), sum(O.filter(t => t.date === d))])
@@ -24,10 +24,10 @@ export default function Resumo({ S, per, refDate, list }) {
         <div className="card k"><small>Saídas</small><b className="out">{brl(eout)}</b></div>
         <div className="card k"><small>Saldo do período</small><b>{brl(ein - eout)}</b></div>
         <div className="card k"><small>A pagar</small><b>{brl(pend)}</b></div>
-        <div className="card k"><small>Saldo em caixa</small><b>{brl(caixa)}</b></div>
+        <div className="card k"><small>Saldo em caixa (c/ saldo inicial)</small><b>{brl(caixa)}</b></div>
       </div>
 
-      {per !== 'dia' && (
+      {per !== 'dia' && days.length > 1 && days.length <= 93 && (
         <div className="card">
           <h2>Movimento por dia</h2>
           <div className="ch">
