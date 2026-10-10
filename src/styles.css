@@ -1,0 +1,33 @@
+:root{--bg:#f5f6f8;--card:#fff;--tx:#1b1f27;--mu:#6b7280;--bd:#e5e7eb;--ac:#2563eb;--in:#16a34a;--out:#dc2626}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1218;--card:#181c25;--tx:#e8eaf0;--mu:#8b93a3;--bd:#262c38;--ac:#60a5fa;--in:#4ade80;--out:#f87171}}
+*{box-sizing:border-box}
+body{margin:0;font:15px system-ui,sans-serif;background:var(--bg);color:var(--tx)}
+.w{max-width:960px;margin:0 auto;padding:16px}
+.hd{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.hd img{width:36px;height:36px;border-radius:8px}
+h1{font-size:20px;margin:0}h2{font-size:15px;margin:0 0 10px}
+nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px}
+nav button,.b{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 12px;border-radius:8px;cursor:pointer;font:inherit;white-space:nowrap}
+nav button.on,.b.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.g .card{margin:0}
+.k small{color:var(--mu);display:block}.k b{font-size:19px}
+.in{color:var(--in)}.out{color:var(--out)}
+small{color:var(--mu)}
+input,select{font:inherit;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);min-width:0}
+.f{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.f>*{flex:1 1 130px}
+.bar{height:8px;background:var(--bd);border-radius:4px;overflow:hidden;margin:4px 0 10px}
+.bar i{display:block;height:100%;background:var(--ac)}
+.bar.over i{background:var(--out)}
+.row{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd);align-items:center}
+.row:last-child{border:0}
+.between{display:flex;justify-content:space-between;gap:8px}
+.ch{display:flex;align-items:flex-end;gap:2px;height:110px;overflow-x:auto}
+.ch div{flex:1;min-width:8px;display:flex;flex-direction:column;justify-content:flex-end;height:100%;gap:1px}
+.ch i{display:block;border-radius:2px 2px 0 0}
+.pn{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap}
+.seg{display:flex;gap:4px}
+.cap{text-transform:capitalize}
+.xb{background:none;border:0;color:var(--mu);cursor:pointer;font-size:16px}
+.lnk{color:var(--ac)}
