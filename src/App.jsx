@@ -3,13 +3,14 @@ import { useStore } from './useStore'
 import { getRange } from './utils'
 import Periodo from './components/Periodo'
 import Resumo from './views/Resumo'
+import Analise from './views/Analise'
 import Lancamentos from './views/Lancamentos'
 import Fixas from './views/Fixas'
 import Orcamento from './views/Orcamento'
 import Metas from './views/Metas'
 import Dados from './views/Dados'
 
-const TABS = { resumo: 'Resumo', lanc: 'Lançamentos', fixas: 'Fixas', orc: 'Orçamento', metas: 'Metas', dados: 'Dados' }
+const TABS = { resumo: 'Resumo', analise: 'Análise', lanc: 'Lançamentos', fixas: 'Fixas', orc: 'Orçamento', metas: 'Metas', dados: 'Dados' }
 
 export default function App() {
   const [S, setS] = useStore()
@@ -19,7 +20,7 @@ export default function App() {
 
   const [a, b] = getRange(per, refDate)
   const list = S.tx.filter(t => t.date >= a && t.date <= b).sort((x, y) => y.date.localeCompare(x.date))
-  const comPeriodo = view === 'resumo' || view === 'lanc'
+  const comPeriodo = view === 'resumo' || view === 'lanc' || view === 'analise'
 
   return (
     <div className="w">
@@ -32,8 +33,9 @@ export default function App() {
           <button key={k} className={view === k ? 'on' : ''} onClick={() => setView(k)}>{v}</button>
         ))}
       </nav>
-      {comPeriodo && <Periodo per={per} setPer={setPer} refDate={refDate} setRef={setRef} />}
+      {comPeriodo && <Periodo per={view === 'analise' ? 'mes' : per} setPer={setPer} refDate={refDate} setRef={setRef} soMes={view === 'analise'} />}
       {view === 'resumo' && <Resumo S={S} per={per} refDate={refDate} list={list} />}
+      {view === 'analise' && <Analise S={S} refDate={refDate} />}
       {view === 'lanc' && <Lancamentos setS={setS} list={list} />}
       {view === 'fixas' && <Fixas S={S} setS={setS} refDate={refDate} />}
       {view === 'orc' && <Orcamento S={S} setS={setS} />}

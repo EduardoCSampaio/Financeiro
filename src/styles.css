@@ -31,3 +31,7 @@ input,select{font:inherit;padding:8px;border:1px solid var(--bd);border-radius:8
 .cap{text-transform:capitalize}
 .xb{background:none;border:0;color:var(--mu);cursor:pointer;font-size:16px}
 .lnk{color:var(--ac)}
+.al{border-left:4px solid var(--ac);background:var(--bg);padding:8px 10px;margin-bottom:8px;border-radius:6px}
+.al b{display:block;margin-bottom:2px}
+.al.alta{border-color:var(--out)}.al.media{border-color:#f59e0b}
+.lbl{display:block;text-align:center;font-size:11px;color:var(--mu);margin-top:4px}

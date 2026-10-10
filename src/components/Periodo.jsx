@@ -1,15 +1,15 @@
 import { labelOf, moveRef } from '../utils'
 
-export default function Periodo({ per, setPer, refDate, setRef }) {
+export default function Periodo({ per, setPer, refDate, setRef, soMes }) {
   return (
     <div className="pn">
-      <div className="seg">
+      {!soMes && <div className="seg">
         {['dia', 'semana', 'mes'].map(p => (
           <button key={p} className={'b' + (per === p ? ' p' : '')} onClick={() => setPer(p)}>
             {p === 'mes' ? 'Mês' : p[0].toUpperCase() + p.slice(1)}
           </button>
         ))}
-      </div>
+      </div>}
       <div className="seg">
         <button className="b" onClick={() => setRef(moveRef(per, refDate, -1))}>‹</button>
         <button className="b" onClick={() => setRef(new Date())}>Hoje</button>
